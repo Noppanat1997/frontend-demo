@@ -14,20 +14,24 @@ const TestApi = () => {
 
   function fetchTodoTask() {
     axios
-      .get("http://localhost:1000/api/tasks?isFinished=false")
+      .get(
+        "https://backend-nodejs-demo-2021.herokuapp.com/api/tasks?isFinished=false"
+      )
       .then((res) => setTodo(res.data));
   }
 
   function fetchDoneTask() {
     axios
-      .get("http://localhost:1000/api/tasks?isFinished=true")
+      .get(
+        "https://backend-nodejs-demo-2021.herokuapp.com/api/tasks?isFinished=true"
+      )
       .then((res) => setDone(res.data));
   }
 
   function onCreate() {
     // console.log(createInput, createTime);
     axios
-      .post("http://localhost:1000/api/task", {
+      .post("https://backend-nodejs-demo-2021.herokuapp.com/api/task", {
         taskName: createInput,
         time: createTime,
       })
@@ -41,7 +45,7 @@ const TestApi = () => {
   function onUpdate(id, isFinished) {
     // console.log(id, isFinished);
     axios
-      .put(`http://localhost:1000/api/task?id=${id}`, {
+      .put(`https://backend-nodejs-demo-2021.herokuapp.com/api/task?id=${id}`, {
         isFinished: isFinished,
       })
       .then(() => {
@@ -51,10 +55,12 @@ const TestApi = () => {
   }
 
   function onDelete(id) {
-    axios.delete(`http://localhost:1000/api/task/${id}`).then(() => {
-      fetchTodoTask();
-      fetchDoneTask();
-    });
+    axios
+      .delete(`https://backend-nodejs-demo-2021.herokuapp.com/api/task/${id}`)
+      .then(() => {
+        fetchTodoTask();
+        fetchDoneTask();
+      });
   }
 
   return (
